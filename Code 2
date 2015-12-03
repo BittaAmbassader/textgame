@@ -1,0 +1,761 @@
+using System;
+
+namespace text_based_game
+{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            //Ints:
+            int correct = 0;
+            int Player_One_Handed = 0;
+            int Player_Two_Handed = 0;
+            int Player_Ranged_Weapon = 0;
+            int Player_Magic = 0;
+            int Player_Sneak = 0;
+            int Arraycount = 0;
+            int Player_Attack_Type = 0;
+            int Player_One_Weapon_Damage = 2;
+            int Player_Two_Weapon_Damage = 2;
+            int Player_Range_Weapon_Damage = 2;
+            int Player_Magic_Damage = 2;
+            int Player_Health_Points = 100;
+            int Player_Mana_Points = 50;
+            int Enemy_Health_Points;
+            int Enemy_Maximum_Damage;
+            int Player_Inventory_Money = 0;
+            int Player_Inventory_Experience = 0;
+            int Quest_Reward_EXP;
+            int Quest_Reward_Gold;
+            int Player_Quest_Progress = 0;
+            int Player_Quest_Goal;
+            int Player_EXP = 0;
+            int Player_Checked_For_Item = 0;
+            int Player_Quest_Objective_Complete = 0;
+
+            //strings:
+            string Title_Screen;
+            string Player_Gender;
+            string Player_Race;
+            string Player_Class;
+            string[] Inventory = new string[20];
+            string Input;
+            string Enemy_Name;
+            string Player_Quest = " ";
+            string Quest_Accepted;
+            string Player_Quest_Enemy;
+
+            //Enemy Declair System:
+            Enemy_Name = "Goblin Warrior";
+            Enemy_Health_Points = 25;
+            Enemy_Maximum_Damage = 5;
+
+            //Title Screen:
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome wonderer. Would you like to begin a new adventure?");
+                Console.WriteLine("Yes / No");
+                Title_Screen = Console.ReadLine().ToUpper();
+                if (Title_Screen == "YES" || Title_Screen == "NO")
+                {
+                    correct = 1;
+                }
+                else { }
+            } while (correct == 0);
+            correct = 0;
+
+            //Character Creation:
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Please choose a gender as below:");
+                Console.WriteLine("Male / Female");
+                Player_Gender = Console.ReadLine().ToUpper();
+                if (Player_Gender == "MALE" || Player_Gender == "FEMALE")
+                {
+                    correct = 1;
+                }
+                else { }
+            } while (correct == 0);
+            correct = 0;
+
+            //Race Creation:
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("First tell me. What race are you? Please choose a race as below:");
+                Console.WriteLine("Human");
+                Console.WriteLine("Khajiit");
+                Console.WriteLine("Elf");
+                Console.WriteLine("Grekonian");
+                Console.WriteLine("Your Choice:");
+                Player_Race = Console.ReadLine().ToUpper();
+                if (Player_Race == "HUMAN")
+                {
+                    Console.WriteLine("Ah so your a human. Good we need more humans in this land. This race gives a bonus to the following stats:");
+                    Console.WriteLine("One Handed Weapons. 3 Points");
+                    Console.WriteLine("Two Handed Weapons. 3 Points");
+                    Console.WriteLine("Ranged Weapons. 1 Point");
+                    Console.WriteLine("Magical Attack. 1 Point");
+                    Console.WriteLine("Sneak. 2 Points");
+                    Console.WriteLine("Is this the race you wish to play? Enter Yes/No Below:");
+                    Input = Console.ReadLine().ToUpper();
+                    if (Input == "YES")
+                    {
+                        correct = 1;
+                    }
+                    if (Input == "NO")
+                    {
+                        correct = 0;
+                    }
+                }
+
+                if (Player_Race == "KHAJIIT")
+                {
+                    Console.WriteLine("Ah Khajiit. The magical catfolk.This race gives a bonus to the following stats:");
+                    Console.WriteLine("One Handed Weapons. 2 Points");
+                    Console.WriteLine("Two Handed Weapons. 2 Points");
+                    Console.WriteLine("Ranged Weapons. 1 Point");
+                    Console.WriteLine("Magical Attack. 3 Points");
+                    Console.WriteLine("Sneak. 2 Points");
+                    Console.WriteLine("Is this the race you wish to play? Enter Yes/No Below:");
+                    Input = Console.ReadLine().ToUpper();
+                    if (Input == "YES")
+                    {
+                        correct = 1;
+                    }
+                    if (Input == "NO")
+                    {
+                        correct = 0;
+                    }
+                }
+
+                if (Player_Race == "ELF")
+                {
+                    Console.WriteLine("You're an Elf are you? Handy with a bow? This race gives a bonus to the following stats:");
+                    Console.WriteLine("One Handed Weapons. 2 Point");
+                    Console.WriteLine("Two Handed Weapons. 2 Point");
+                    Console.WriteLine("Ranged Weapons. 3 Points");
+                    Console.WriteLine("Magical Attack. 1 Point");
+                    Console.WriteLine("Sneak. 2 Points");
+                    Console.WriteLine("Is this the race you wish to play? Enter Yes/No Below:");
+                    Input = Console.ReadLine().ToUpper();
+                    if (Input == "YES")
+                    {
+                        correct = 1;
+                    }
+                    if (Input == "NO")
+                    {
+                        correct = 0;
+                    }
+                }
+
+                if (Player_Race == "GREKONIAN")
+                {
+                    Console.WriteLine("Your people are thieves. I hope you're not like the others. ,This race gives a bonus to the following stats:");
+                    Console.WriteLine("One Handed Weapons. 3 Points");
+                    Console.WriteLine("Two Handed Weapons. 1 Point");
+                    Console.WriteLine("Ranged Weapons. 1 Point");
+                    Console.WriteLine("Magical Attack. 1 Point");
+                    Console.WriteLine("Sneak. 4 Points");
+                    Console.WriteLine("Is this the race you wish to play? Enter Yes/No Below:");
+                    Input = Console.ReadLine().ToUpper();
+                    if (Input == "YES")
+                    {
+                        correct = 1;
+                    }
+                    if (Input == "NO")
+                    {
+                        correct = 0;
+                    }
+                }
+            } while (correct == 0);
+            correct = 0;
+
+            //Class Creation:
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Next what role are you? Please choose a class as below:");
+                Console.WriteLine("Warrior");
+                Console.WriteLine("Hunter");
+                Console.WriteLine("Mage");
+                Console.WriteLine("Thief");
+                Console.WriteLine("Your Choice:");
+                Player_Class = Console.ReadLine().ToUpper();
+                if (Player_Class == "WARRIOR")
+                {
+                    Console.WriteLine("Ah so you're a great warrior are you? Good we need a hero to save this land.This class gives a bonus to the following stats:");
+                    Console.WriteLine("One Handed Weapons. 3 Points");
+                    Console.WriteLine("Two Handed Weapons. 3 Points");
+                    Console.WriteLine("Ranged Weapons. 2 Points");
+                    Console.WriteLine("Magical Attack. 1 Point");
+                    Console.WriteLine("Sneak. 1 Point");
+                    Console.WriteLine("Is this the class you wish to play? Enter Yes/No Below:");
+                    Input = Console.ReadLine().ToUpper();
+                    if (Input == "YES")
+                    {
+                        correct = 1;
+                    }
+                    if (Input == "NO")
+                    {
+                        correct = 0;
+                    }
+                }
+                if (Player_Class == "HUNTER")
+                {
+                    Console.WriteLine("Ah so you're a hunter are you?Maybe you can help save us all.This class gives a bonus to the following stats:");
+                    Console.WriteLine("One Handed Weapons. 1 Point");
+                    Console.WriteLine("Two Handed Weapons. 1 Point");
+                    Console.WriteLine("Ranged Weapons. 4 Points");
+                    Console.WriteLine("Magical Attack. 1 Point");
+                    Console.WriteLine("Sneak. 3 Points");
+                    Console.WriteLine("Is this the class you wish to play? Enter Yes/No Below:");
+                    Input = Console.ReadLine().ToUpper();
+                    if (Input == "YES")
+                    {
+                        correct = 1;
+                    }
+                    if (Input == "NO")
+                    {
+                        correct = 0;
+                    }
+                }
+                if (Player_Class == "MAGE")
+                {
+                    Console.WriteLine("So you're a mage? Did you go to Lunastar Academy?This class gives a bonus to the following stats:");
+                    Console.WriteLine("One Handed Weapons. 2 Points");
+                    Console.WriteLine("Two Handed Weapons. 1 Point");
+                    Console.WriteLine("Ranged Weapons. 1 Point");
+                    Console.WriteLine("Magical Attack. 5 Points");
+                    Console.WriteLine("Sneak. 1 Point");
+                    Console.WriteLine("Is this the class you wish to play? Enter Yes/No Below:");
+                    Input = Console.ReadLine().ToUpper();
+                    if (Input == "YES")
+                    {
+                        correct = 1;
+                    }
+                    if (Input == "NO")
+                    {
+                        correct = 0;
+                    }
+                }
+                if (Player_Class == "THIEF")
+                {
+                    Console.WriteLine("So you're a thief? This land has to many of your kind.This class gives a bonus to the following stats:");
+                    Console.WriteLine("One Handed Weapons. 2 Points");
+                    Console.WriteLine("Two Handed Weapons. 1 Point");
+                    Console.WriteLine("Ranged Weapons. 3 Points");
+                    Console.WriteLine("Magical Attack. 1 Point");
+                    Console.WriteLine("Sneak. 3 Points");
+                    Console.WriteLine("Is this the class you wish to play? Enter Yes/No Below:");
+                    Input = Console.ReadLine().ToUpper();
+                    if (Input == "YES")
+                    {
+                        correct = 1;
+                    }
+                    if (Input == "NO")
+                    {
+                        correct = 0;
+                    }
+                }
+                else { }
+            } while (correct == 0);
+            correct = 0;
+
+            //Race Bonus:
+            if (Player_Race == "HUMAN")
+            {
+                Player_One_Handed = Player_One_Handed + 3;
+                Player_Two_Handed = Player_Two_Handed + 3;
+                Player_Ranged_Weapon = Player_Ranged_Weapon + 1;
+                Player_Magic++;
+                Player_Sneak++;
+            }
+            if (Player_Race == "KHAJIIT")
+            {
+                Player_One_Handed = Player_One_Handed + 2;
+                Player_Two_Handed = Player_Two_Handed + 2;
+                Player_Ranged_Weapon++;
+                Player_Magic = Player_Magic + 3;
+                Player_Sneak = Player_Sneak + 2;
+            }
+            if (Player_Race == "ELF")
+            {
+                Player_One_Handed = Player_One_Handed + 2;
+                Player_Two_Handed = Player_Two_Handed + 2;
+                Player_Ranged_Weapon = Player_Ranged_Weapon + 3;
+                Player_Magic++;
+                Player_Sneak = Player_Sneak + 2;
+            }
+            if (Player_Race == "GREKONIAN")
+            {
+                Player_One_Handed = Player_One_Handed + 3;
+                Player_Two_Handed++;
+                Player_Ranged_Weapon++;
+                Player_Magic++;
+                Player_Sneak = Player_Sneak + 4;
+            }
+
+            //Class Bonus:
+            if (Player_Class == "WARRIOR")
+            {
+                Player_One_Handed = Player_One_Handed + 3;
+                Player_Two_Handed = Player_Two_Handed + 3;
+                Player_Ranged_Weapon = Player_Ranged_Weapon + 2;
+                Player_Magic++;
+                Player_Sneak++;
+            }
+            if (Player_Class == "HUNTER")
+            {
+                Player_One_Handed++;
+                Player_Two_Handed++;
+                Player_Ranged_Weapon = Player_Ranged_Weapon + 4;
+                Player_Magic++;
+                Player_Sneak = Player_Sneak + 3;
+            }
+            if (Player_Class == "MAGE")
+            {
+                Player_One_Handed = Player_One_Handed + 2;
+                Player_Two_Handed++;
+                Player_Ranged_Weapon++;
+                Player_Magic = Player_Magic + 5;
+                Player_Sneak++;
+            }
+            if (Player_Class == "THIEF")
+            {
+                Player_One_Handed = Player_One_Handed + 2;
+                Player_Two_Handed++;
+                Player_Ranged_Weapon = Player_Ranged_Weapon + 3;
+                Player_Magic++;
+                Player_Sneak = Player_Sneak + 3;
+            }
+            //Player Description, Writeout
+            Console.Clear();
+            Console.WriteLine("Your Full Character Description, is:");
+            Console.WriteLine("A {0} {1} {2}", Player_Gender, Player_Race, Player_Class);
+            Console.WriteLine("One Handed Weapon Skill Points: {0}", Player_One_Handed);
+            Console.WriteLine("Two Handed Weapon Skill Points: {0}", Player_Two_Handed);
+            Console.WriteLine("Ranged Weapon Skill Points: {0}", Player_Ranged_Weapon);
+            Console.WriteLine("Magical Attack Skill Points: {0}", Player_Magic);
+            Console.WriteLine("Sneak Skill Points: {0}", Player_Sneak);
+            Console.ReadLine();
+
+            //Tutorial Quest, Introduction:
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("You awake insaide your sleeping chamber, with no recolection as to how you got there. All you can remember is being on the battlefield.");
+                Console.WriteLine("________________________________________________________________________________");
+                Console.WriteLine("'Look' around, to see if anything you might need.");
+                Console.WriteLine("'Door' to open your door.");
+                Console.WriteLine("'Chest' to check your chest.");
+                Console.WriteLine("'Menu' to check you charater.");
+                Input = Console.ReadLine().ToUpper();
+                if (Input == "LOOK")
+                {
+                    if (Player_Checked_For_Item == 0)
+                    {
+                        do
+                        {
+                            Console.WriteLine("It's your sleeping quarters as you remember it.");
+                            Console.WriteLine("< Back");
+                            Input = Console.ReadLine().ToUpper();
+                            if (Input == "BACK")
+                            { correct = 1; }
+                            if (Input != "BACK")
+                            { correct = 0; }
+                        } while (correct == 0);
+                    }
+                    if (Player_Checked_For_Item == 1)
+                    {
+                        do
+                        {
+                            Console.WriteLine("You found a key that you've never seen before. Maybe it'll open the weird lock on your chest. You put it in you inventory");
+                            Inventory[0] = "Strange Key";
+                            Console.WriteLine("< Back");
+                            Input = Console.ReadLine().ToUpper();
+                            if (Input == "BACK")
+                            { correct = 1; }
+                            if (Input != "BACK")
+                            { correct = 0; }
+                        } while (correct == 0);
+                    }
+                }
+                if (Input == "DOOR")
+                {
+                    if (Inventory[0] == null)
+                    {
+                        do
+                        {
+                            Console.WriteLine("The door won't budge, and gave you a wierd feeling upon the touch");
+                            Console.WriteLine("< Back");
+                            Input = Console.ReadLine().ToUpper();
+                            if (Input == "BACK")
+                            { correct = 1; }
+                            if (Input != "BACK")
+                            { correct = 0; }
+                        } while (correct == 0);
+                    }
+                    if (Inventory[0] != null)
+                    {
+                        do
+                        {
+                            Console.WriteLine("Your quarters ket will unloack the door.");
+                            Console.WriteLine("'Open'?");
+                            Console.WriteLine("< Back");
+                            Input = Console.ReadLine().ToUpper();
+                            if (Input == "BACK")
+                            { correct = 1; }
+                            if (Input != "BACK")
+                            { correct = 0; }
+                            if (Input == "OPEN")
+                            {
+                                do
+                                {
+                                    Console.WriteLine("Your door slowly opens as you turn the key.");
+                                    Player_Quest_Objective_Complete = 1;
+                                    Console.WriteLine("< Continue");
+                                    Input = Console.ReadLine().ToUpper();
+                                    if (Input == "CONTINUE")
+                                    { correct = 3; }
+                                    if (Input != "CONTINUE")
+                                    { correct = 0; }
+                                } while (correct == 0);
+                            }
+                        } while (correct == 0);
+                    }
+                }
+                if (Input == "CHEST")
+                {
+                    do
+                    {
+                        Console.WriteLine("Your chest is locked with a different key than normal.");
+                        Console.WriteLine("'open'?");
+                        Console.WriteLine("< Back");
+                        Input = Console.ReadLine().ToUpper();
+                        if (Input == "BACK")
+                        { correct = 1; }
+                        if (Input != "BACK")
+                        { correct = 0; }
+                        if (Input == "OPEN" && Inventory[0] == null)
+                        {
+                            do
+                            {
+                                Console.WriteLine("You have nothing to open it with.");
+                                Console.WriteLine("< Back");
+                                Input = Console.ReadLine().ToUpper();
+                                if (Input == "BACK")
+                                { correct = 1; }
+                                if (Input != "BACK")
+                                { correct = 0; }
+                            } while (correct == 0);
+                            Player_Checked_For_Item = 1;
+                        }
+                        if (Input == "OPEN" && Inventory[0] != null)
+                        {
+                            do
+                            {
+                                Console.WriteLine("The key worked. Your chest is now open. You found your quarters key.");
+                                Inventory[0] = "Quarters Key";
+                                Console.WriteLine("< Back");
+                                Input = Console.ReadLine().ToUpper();
+                                if (Input == "BACK")
+                                { correct = 1; }
+                                if (Input != "BACK")
+                                { correct = 0; }
+                            } while (correct == 0);
+                        }
+                    } while (correct == 0);
+                }
+
+                if (Input == "MENU")
+                {
+                    correct = 0;
+                    Console.WriteLine("Enter Quest, to see your current quest");
+                    Console.WriteLine("Enter Inventory, to see your Inventory content");
+                    Console.WriteLine("Enter Status, to see in detail how your character is doing");
+                    Console.WriteLine("< Back");
+                    Input = Console.ReadLine().ToUpper();
+                    if (Input == "QUEST" && Player_Quest != " ")
+                    {
+                        do
+                        {
+                            Console.Clear();
+                            Console.WriteLine(Player_Quest);
+                            Console.WriteLine("< Back");
+                            Input = Console.ReadLine().ToUpper();
+                            if (Input == "BACK")
+                            {
+                                correct = 1;
+                            }
+                            if (Input != "BACK")
+                            {
+                            }
+                        } while (correct == 0);
+                    }
+                    if (Input == "QUEST" && Player_Quest == " ")
+                    {
+                        do
+                        {
+                            Console.Clear();
+                            Console.WriteLine("You don not have any active quests at the moment");
+                            Console.WriteLine("< back");
+                            Input = Console.ReadLine().ToUpper();
+                            if (Input == "BACK")
+                            {
+                                correct = 1;
+                            }
+                            if (Input != "BACK")
+                            {
+                            }
+                        } while (correct == 0);
+                    }
+                    if (Input == "INVENTORY" || Input == "INV")
+                    {
+                        do
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Your Inventory Contains:");
+                            for (Arraycount = 0; Arraycount < 20; Arraycount++)
+                            {
+                                int inventory_possition = Arraycount + 1;
+                                Console.SetCursorPosition(0, inventory_possition);
+                                Console.WriteLine("{0}", Inventory[Arraycount]);
+                            }
+                            Console.WriteLine("< Back");
+                            Input = Console.ReadLine().ToUpper();
+                            if (Input == "BACK")
+                            {
+                                correct = 1;
+                            }
+                            if (Input != "BACK")
+                            {
+                                correct = 0;
+                            }
+                        } while (correct == 0);
+
+                    }
+                    if (Input == "STATUS" || Input == "STAT")
+                    {
+                        do
+                        {
+                            Console.Clear();
+                            Console.WriteLine("You character is:");
+                            Console.WriteLine("A {0} {1} {2}", Player_Gender, Player_Race, Player_Class);
+                            Console.WriteLine("One Handed Weapon Skill Points: {0}", Player_One_Handed);
+                            Console.WriteLine("Two Handed Weapon Skill Points: {0}", Player_Two_Handed);
+                            Console.WriteLine("Ranged Weapon Skill Points: {0}", Player_Ranged_Weapon);
+                            Console.WriteLine("Magical Attack Skill Points: {0}", Player_Magic);
+                            Console.WriteLine("{0} Health Points, {1} Mana Points, {2} Experience Points", Player_Health_Points, Player_Mana_Points, Player_EXP);
+                            Console.WriteLine("< Back");
+                            Input = Console.ReadLine().ToUpper();
+                            if (Input == "BACK")
+                            {
+                                correct = 1;
+                            }
+                            if (Input != "BACK")
+                            {
+                                correct = 0;
+                            }
+                        } while (correct == 0);
+                    }
+                    if (Input == "BACK")
+                    {
+                        correct = 2;
+                    }
+                    else {
+                    }
+                }
+            } while (correct != 3);
+
+//Stairs and hallway after sleeping quarters
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("As you walk through your door you turn to see it disapear right in front of your eyes.As your door disapears a set of stairs apear.");
+                Console.WriteLine("Go up the 'Stairs'?");
+                Console.WriteLine("'Look' around you?");
+                Console.WriteLine("'Menu' to check your person at this time");
+                Input = Console.ReadLine().ToUpper();
+                if (Input == "STAIRS")
+                {
+                    do
+                    {
+                        Console.WriteLine("You slowly start to walk up the stairs. Torches line the walls lighting your way. You decide to take one. The torch emits a constant glow");
+                        Inventory[0] = "Torch";
+                        Console.WriteLine("<Continue");
+                        Input = Console.ReadLine().ToUpper();
+                        if (Input == "CONTINUE")
+                       {correct = 3;}
+                        if (Input != "CONTINUE")
+                        {correct = 0;}
+                        } while (correct == 0);
+                        }
+
+                //Stair contueing
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("After following the stair you reach an open door leading to the outside. You go outside, the sun shining brightly. As you walk outside your attacked by goblin warrior.");
+                    Console.WriteLine("<Continue");
+         
+                //Combat system
+                Input = Console.ReadLine().ToUpper();
+                if (Input == "CONTINUE")
+                { correct = 3; }
+                if (Input != "CONTINUE")
+                { correct = 0; }
+            } while (correct == 0);
+            do
+            {
+                correct = 0;
+                Console.WriteLine("Your Health is at {0} Points, Your Mana is at {1} Points", Player_Health_Points, Player_Mana_Points);
+                Console.WriteLine("The {0}s Health is at {1} Points", Enemy_Name, Enemy_Health_Points);
+                Console.WriteLine("Enter the number for the type of attack that you wish to perform:");
+                Console.WriteLine("1. One Handed Attack");
+                Console.WriteLine("2. Two Handed Attack");
+                Console.WriteLine("3. Ranged Weapon Attack");
+                Console.WriteLine("4. Magical Attack");
+                Player_Attack_Type = Convert.ToInt32(Console.ReadLine());
+                if (Player_Attack_Type == 1)
+                {
+                    Random Damage_Roll = new Random();
+                    int Random_Damage_Roll = Damage_Roll.Next(0, Player_One_Weapon_Damage);
+                    Console.WriteLine("{0}", Random_Damage_Roll);
+                    Random Skill_Point_Roll = new Random();
+                    int Skill_Point_Outcome = Skill_Point_Roll.Next(0, 11);
+                    if (Skill_Point_Outcome > 6 && Random_Damage_Roll > 0)
+                    {
+                        Random_Damage_Roll = Random_Damage_Roll + Player_One_Handed;
+                        Console.WriteLine("You did a critical hit, and added {0} Skill points of damage", Player_One_Handed);
+                    }
+                    else { }
+                    Console.WriteLine("You did {0} Damage to the {1}", Random_Damage_Roll, Enemy_Name);
+                    Enemy_Health_Points = Enemy_Health_Points - Random_Damage_Roll;
+                }
+                if (Player_Attack_Type == 2)
+                {
+                    Random Damage_Roll = new Random();
+                    int Random_Damage_Roll = Damage_Roll.Next(0, Player_Two_Handed);
+                    Console.WriteLine("{0}", Random_Damage_Roll);
+                    Random Skill_Point_Roll = new Random();
+                    int Skill_Point_Outcome = Skill_Point_Roll.Next(0, 11);
+                    if (Skill_Point_Outcome > 6 && Random_Damage_Roll > 0)
+                    {
+                        Random_Damage_Roll = Random_Damage_Roll + Player_Two_Handed;
+                        Console.WriteLine("You did a critical hit, and added {0} Skill points of damage", Player_Two_Handed);
+                    }
+                    else { }
+
+                    Console.WriteLine("You did {0} Damage to the {1}", Random_Damage_Roll, Enemy_Name);
+                    Enemy_Health_Points = Enemy_Health_Points - Random_Damage_Roll;
+                }
+                if (Player_Attack_Type == 3)
+                {
+                    Random Damage_Roll = new Random();
+                    int Random_Damage_Roll = Damage_Roll.Next(0, Player_Ranged_Weapon);
+                    Console.WriteLine("{0}", Random_Damage_Roll);
+                    Random Skill_Point_Roll = new Random();
+                    int Skill_Point_Outcome = Skill_Point_Roll.Next(0, 11);
+                    if (Skill_Point_Outcome > 6 && Random_Damage_Roll > 0)
+                    {
+                        Random_Damage_Roll = Random_Damage_Roll + Player_Ranged_Weapon;
+                        Console.WriteLine("You did a critical hit, and added {0} Skill points of damage", Player_Ranged_Weapon);
+                    }
+                    else { }
+
+                    Console.WriteLine("You did {0} Damage to the {1}", Random_Damage_Roll, Enemy_Name);
+                    Enemy_Health_Points = Enemy_Health_Points - Random_Damage_Roll;
+                }
+                if (Player_Attack_Type == 4)
+                {
+                    Random Damage_Roll = new Random();
+                    int Random_Damage_Roll = Damage_Roll.Next(0, Player_Magic);
+                    Console.WriteLine("{0}", Random_Damage_Roll);
+                    Random Skill_Point_Roll = new Random();
+                    int Skill_Point_Outcome = Skill_Point_Roll.Next(0, 11);
+                    if (Skill_Point_Outcome > 6 && Random_Damage_Roll > 0)
+                    {
+                        Random_Damage_Roll = Random_Damage_Roll + Player_Magic;
+                        Console.WriteLine("You did a critical hit, and added {0} Skill points of damage", Player_Magic);
+                    }
+                    else { }
+
+                    Console.WriteLine("You did {0} Damage to the {1}", Random_Damage_Roll, Enemy_Name);
+                    Enemy_Health_Points = Enemy_Health_Points - Random_Damage_Roll;
+                }
+                else { }
+                if (Enemy_Health_Points > 0)
+                {
+                    Random Enemy_Damage_Roll = new Random();
+                    int Random_Enemy_Damage_Roll = Enemy_Damage_Roll.Next(0, Enemy_Maximum_Damage);
+                    Console.WriteLine("The {0} Strikes back, and deal {1} Points of Damage", Enemy_Name, Random_Enemy_Damage_Roll);
+                    Player_Health_Points = Player_Health_Points - Random_Enemy_Damage_Roll;
+                    Console.ReadLine();
+                }
+                else { }
+            } while (Player_Health_Points > 0 && Enemy_Health_Points > 0);
+            Console.Clear();
+            if (Enemy_Health_Points < 0)
+            {
+                Enemy_Health_Points = 0;
+            }
+            if (Player_Health_Points < 0)
+            {
+                Player_Health_Points = 0;
+            }
+            Console.WriteLine("Your Health is at {0} Points, Your Mana is at {1} Points", Player_Health_Points, Player_Mana_Points);
+            Console.WriteLine("The {0}s Healt is at {1} Points", Enemy_Name, Enemy_Health_Points);
+            Console.WriteLine("Enter the number for the type of attack that you wish to perform:");
+            Console.WriteLine("1. One Handed Attack");
+            Console.WriteLine("2. Two Handed Attack");
+            Console.WriteLine("3. Ranged Weapon Attack");
+            Console.WriteLine("4. Magical Attack");
+            if (Enemy_Health_Points > 0)
+            {
+                Console.WriteLine("");
+                Console.WriteLine(" - You lost the battle.");
+                Console.ReadLine();
+            }
+            if (Player_Health_Points > 0)
+            {
+                Console.WriteLine("");
+                Console.WriteLine(" - You won the battle.");
+                Console.ReadLine();
+
+           //second option for stairs or look
+                if (Input == "LOOK")
+                {
+                    do
+                    {
+                        Console.WriteLine("You look to your right, you see nothing but a stone wall. You look to you left, theres a long hallway. Do you follow it?");
+                        Console.WriteLine("'Follow'?");
+                        Console.WriteLine("< Back");
+                        Input = Console.ReadLine().ToUpper();
+                        if (Input == "BACK")
+                        {correct = 1;}
+                        if (Input != "BACK")
+                        {correct = 0;}
+                        if (Input == "FOLLOW")
+                        {
+                            do
+                            {
+                                Console.WriteLine("You follow the long hallway, the light behind you slowly starts to fade to black. A chill runs down your spine as you hear a voice say 'Turn back now!'");
+                                Console.WriteLine("Turn back?");
+                                Input = Console.ReadLine().ToUpper();
+                                if (Input == "BACK")
+                                {correct = 1;}
+                                if (Input != "BACK")
+                                {correct = 0;}
+                            } while (correct == 0);
+                        }                                 
+                     } while (correct == 0);
+                   } while (correct == 0) ;
+                } while (correct == 0) ;
+            } while (correct == 0);
+        }
+    }    
+}
+
